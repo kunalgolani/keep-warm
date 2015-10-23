@@ -2,8 +2,13 @@
   "name": "keep-warm",
   "version": "1.0.0",
   "description": "A utility to maintain an always warm cache refreshed every x seconds",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
+    "babel": "rm -rf lib/ && babel src -d lib",
+    "lint": "eslint .",
+    "precommit": "npm run babel && npm run lint",
+    "watch": "babel src -d lib -w",
+    "prepublish": "npm run precommit",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,5 +25,13 @@
   "bugs": {
     "url": "https://github.com/kunalgolani/keep-warm/issues"
   },
-  "homepage": "https://github.com/kunalgolani/keep-warm"
+  "homepage": "https://github.com/kunalgolani/keep-warm",
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "eslint": "~1.7.3"
+  },
+  "dependencies": {
+    "co": "~4.6.0",
+    "underscore": "^1.8.3"
+  }
 }
