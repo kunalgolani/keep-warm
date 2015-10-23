@@ -15,6 +15,9 @@
     "type": "git",
     "url": "git@github.com:kunalgolani/keep-warm.git"
   },
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org/"
+  },
   "keywords": [
     "cache",
     "warm",
