@@ -1,0 +1,24 @@
+{
+  "name": "keep-warm",
+  "version": "1.0.0",
+  "description": "A utility to maintain an always warm cache refreshed every x seconds",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kunalgolani/keep-warm.git"
+  },
+  "keywords": [
+    "cache",
+    "warm",
+    "fetch"
+  ],
+  "author": "Kunal Golani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kunalgolani/keep-warm/issues"
+  },
+  "homepage": "https://github.com/kunalgolani/keep-warm"
+}

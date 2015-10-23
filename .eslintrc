@@ -1,0 +1,40 @@
+parser: babel-eslint
+extends: "eslint:recommended"
+rules:
+    semi:
+        - 2
+        - always
+    quotes:
+        - 2
+        - single
+    camelcase:
+        - 2
+        - properties: never
+    strict:
+        - 2
+        - global
+    no-use-before-define:
+        - 2
+        - nofunc
+    no-unused-expressions:
+        - 2
+        -
+            allowTernary: true
+            allowShortCircuit: true
+    linebreak-style:
+        - 2
+    object-shorthand:
+        - 1
+    generator-star-spacing:
+        - 1
+    space-unary-ops:
+        - 1
+    indent:
+        - 0
+        - tab
+        - SwitchCase: 2
+    no-console:
+        - 0
+env:
+    es6: true
+    node: true
