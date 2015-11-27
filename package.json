@@ -31,7 +31,7 @@
   "homepage": "https://github.com/kunalgolani/keep-warm",
   "devDependencies": {
     "babel": "~5.8.23",
-    "eslint": "~1.7.3"
+    "eslint": "~1.10.0"
   },
   "dependencies": {
     "co": "~4.6.0",
