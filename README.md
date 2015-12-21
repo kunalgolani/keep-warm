@@ -26,12 +26,22 @@ var keepWarm = require('keep-warm');
  */
 keepWarm('myKey', function() {
     // does something async and returns a Promise
-    }, 15000);
+}, 15000);
 
 /* Params
  * key: the key you originally passed to keepWarm
+ * Use when you want the data synchronously and don't care about a failure when the cache has not been initially populated
  */
 var myData = keepWarm.get('myKey');
+
+/* Params
+ * key: the key you originally passed to keepWarm
+ * Use when you want to wait for the cache to be populated if it's not
+ */
+var myData;
+keepWarm.getAsync('myKey').then(function(value) {
+    myData = value;
+});
 ```
 
 __Note__: This relies on the existence of a global [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) object as defined in the ECMAScript 6 (Harmony) proposal.

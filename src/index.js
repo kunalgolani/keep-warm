@@ -7,6 +7,18 @@ var co = require('co'),
 	fetchers = {};
 
 
+var fetchOnce = throttle(key => {
+
+	return co(function *() {
+
+		cache[key] = yield fetchers[key]();
+		return cache[key];
+
+	}).catch(() => console.error(`Warming up ${key} cache failed`));
+
+}, 100);
+
+
 function keepWarm(key, fetch, interval) {
 	fetchers[key] = fetch;
 
@@ -19,18 +31,8 @@ function keepWarm(key, fetch, interval) {
 
 	}).catch(() => console.error(`Refreshing ${key} cache failed`));
 
+	return fetchOnce(key);
 }
-
-
-var fetchOnce = throttle(key => {
-
-	co(function *() {
-
-		cache[key] = yield fetchers[key]();
-
-	}).catch(() => console.error(`Warming up ${key} cache failed`));
-
-}, 100);
 
 
 keepWarm.get = function(key) {
@@ -40,6 +42,15 @@ keepWarm.get = function(key) {
 
 	fetchOnce(key);
 	throw new Error(`${key} missing from cache, fetching now`);
+
+};
+
+keepWarm.getAsync = function *(key) {
+
+	if (cache[key])
+		return cache[key];
+
+	return yield fetchOnce(key);
 
 };
 

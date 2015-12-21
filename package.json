@@ -36,6 +36,6 @@
   "dependencies": {
     "co": "~4.6.0",
     "underscore": "~1.8.3",
-    "wait-then": "~0.0.4"
+    "wait-then": "~0.1.0"
   }
 }
