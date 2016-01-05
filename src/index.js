@@ -14,7 +14,7 @@ var fetchOnce = throttle(key => {
 		cache[key] = yield fetchers[key]();
 		return cache[key];
 
-	}).catch(() => console.error(`Warming up ${key} cache failed`));
+	}).catch((e) => console.error(`Warming up ${key} cache failed`, e));
 
 }, 100);
 
@@ -25,11 +25,15 @@ function keepWarm(key, fetch, interval) {
 	co(function *() {
 
 		while (true) {
-			cache[key] = yield fetch();
+			try {
+				cache[key] = yield fetch();
+			} catch (e) {
+				console.error(`Refreshing ${key} cache failed`, e);
+			}
 			yield wait(interval);
 		}
 
-	}).catch(() => console.error(`Refreshing ${key} cache failed`));
+	});
 
 	return fetchOnce(key);
 }
