@@ -2,21 +2,22 @@
 
 var co = require('co'),
 	wait = require('wait-then'),
-	{throttle} = require('underscore'),
+	{ throttle } = require('underscore'),
 	cache = {},
 	fetchers = {};
 
 
-var fetchOnce = throttle(key => {
+var fetchOnce = throttle(
 
-	return co(function *() {
+	key => co(function *() {
 
 		cache[key] = yield fetchers[key]();
 		return cache[key];
 
-	}).catch((e) => console.error(`Warming up ${key} cache failed`, e));
+	}).catch(e => console.error(`Warming up ${key} cache failed`, e)),
 
-}, 100);
+	100
+);
 
 
 function keepWarm(key, fetch, interval) {
