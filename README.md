@@ -14,6 +14,10 @@
 
 A utility to maintain an always warm cache refreshed every x seconds
 
+```bash
+npm install --save keep-warm
+```
+
 Basic example:
 
 ```javascript
