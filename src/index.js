@@ -1,13 +1,13 @@
 'use strict';
 
-var co = require('co'),
+const co = require('co'),
 	wait = require('wait-then'),
 	{ throttle } = require('underscore'),
 	cache = {},
 	fetchers = {};
 
 
-var fetchOnce = throttle(
+const fetchOnce = throttle(
 
 	key => co(function *() {
 
