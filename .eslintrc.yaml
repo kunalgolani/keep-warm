@@ -1,6 +1,7 @@
 extends:
     - node
     - node/style-guide
+
 rules:
     no-console: 0
     semi:
